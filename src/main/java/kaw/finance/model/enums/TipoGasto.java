@@ -5,5 +5,8 @@ public enum TipoGasto {
     LAZER,
     FACULDADE,
     LOCOMOCAO,
+    BEM_ESTAR,
+    CASA,
+    ASSINATURAS,
     OUTRO
 }
