@@ -29,7 +29,7 @@ public class Gasto {
     private String descricao;
     @Column(name = "valor",  nullable = false)
     private BigDecimal valor;
-    @Column(name = "tipo_gasto")
+    @Column(name = "tipo_gasto", nullable = false)
     private TipoGasto tipoGasto;
     @Column(name = "data")
     private Date data;
