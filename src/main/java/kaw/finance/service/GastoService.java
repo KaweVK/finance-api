@@ -21,13 +21,23 @@ public class GastoService {
     @Autowired
     private GastoMapper gastoMapper;
 
+    public Optional<Gasto> findById(Long id) {
+        Optional<Gasto> gasto = gastoRepository.findById(id);
+        if (gasto.isEmpty()) {
+            throw new RuntimeException("Gasto não encontrado");
+        }
+        return gasto;
+    }
+
+    public Page<ResponseGastoDto> findAll(Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Gasto> gastos = gastoRepository.findAll(pageable);
+        return gastos.map(gastoMapper::toResponseDTO);
+    }
+
     public Gasto createGasto(RegisterGastoDto gastoDto){
         var gasto = gastoMapper.toEntity(gastoDto);
         return gastoRepository.save(gasto);
-    }
-
-    public void deleteGasto(Long id){
-        gastoRepository.deleteById(id);
     }
 
     public Gasto updateGasto(Long id, RegisterGastoDto gastoDto){
@@ -42,17 +52,7 @@ public class GastoService {
         return gastoRepository.save(gasto);
     }
 
-    public Page<ResponseGastoDto> findAll(Integer page, Integer size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Gasto> gastos = gastoRepository.findAll(pageable);
-        return gastos.map(gastoMapper::toResponseDTO);
-    }
-
-    public Optional<Gasto> findById(Long id) {
-        Optional<Gasto> gasto = gastoRepository.findById(id);
-        if (gasto.isEmpty()) {
-            throw new RuntimeException("Gasto não encontrado");
-        }
-        return gasto;
+    public void deleteGasto(Long id){
+        gastoRepository.deleteById(id);
     }
 }
