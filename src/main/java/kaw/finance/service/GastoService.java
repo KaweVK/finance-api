@@ -3,6 +3,7 @@ package kaw.finance.service;
 import kaw.finance.dto.RegisterGastoDto;
 import kaw.finance.dto.ResponseGastoDto;
 import kaw.finance.dto.mapper.GastoMapper;
+import kaw.finance.exceptions.GastoNotFoundException;
 import kaw.finance.model.Gasto;
 import kaw.finance.repository.GastoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class GastoService {
     public Optional<Gasto> findById(Long id) {
         Optional<Gasto> gasto = gastoRepository.findById(id);
         if (gasto.isEmpty()) {
-            throw new RuntimeException("Gasto não encontrado");
+            throw new GastoNotFoundException("Gasto não encontrado");
         }
         return gasto;
     }
@@ -48,6 +49,7 @@ public class GastoService {
         gasto.setValor(gastoDto.valor());
         gasto.setTipoGasto(gastoDto.tipoGasto());
         gasto.setData(gastoDto.data());
+        gasto.setMetodoPagamento(gastoDto.metodoPagamento());
 
         return gastoRepository.save(gasto);
     }

@@ -1,6 +1,7 @@
 package kaw.finance.model;
 
 import jakarta.persistence.*;
+import kaw.finance.model.enums.MetodoPagamento;
 import kaw.finance.model.enums.TipoGasto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +32,8 @@ public class Gasto {
     private BigDecimal valor;
     @Column(name = "tipo_gasto", nullable = false)
     private TipoGasto tipoGasto;
+    @Column(name = "metodo_pagamento", nullable = false)
+    private MetodoPagamento metodoPagamento;
     @Column(name = "data")
     private Date data;
     @CreatedDate

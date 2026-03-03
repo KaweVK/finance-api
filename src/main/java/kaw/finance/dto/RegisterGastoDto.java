@@ -3,6 +3,7 @@ package kaw.finance.dto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import kaw.finance.model.enums.MetodoPagamento;
 import kaw.finance.model.enums.TipoGasto;
 
 import java.math.BigDecimal;
@@ -20,6 +21,8 @@ public record RegisterGastoDto(
         BigDecimal valor,
         @NotNull
         TipoGasto tipoGasto,
-        Date data
+        Date data,
+        @NotNull
+        MetodoPagamento metodoPagamento
 ) {
 }
