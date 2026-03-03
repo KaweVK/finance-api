@@ -37,5 +37,4 @@ public class Ganho {
     @Column(name = "data_update")
     private LocalDateTime dataUpdate;
 
-
 }
