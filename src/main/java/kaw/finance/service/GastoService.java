@@ -33,7 +33,7 @@ public class GastoService {
 
     public Page<ResponseGastoDto> findAll(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Gasto> gastos = gastoRepository.findAll(pageable);
+        Page<Gasto> gastos = gastoRepository.findAllNaoPago(pageable);
         return gastos.map(gastoMapper::toResponseDTO);
     }
 
@@ -56,10 +56,13 @@ public class GastoService {
 
         gasto.setNome(gastoDto.nome());
         gasto.setDescricao(gastoDto.descricao());
-        gasto.setValor(gastoDto.valor());
+        gasto.setValor(gastoDto.valor().divide(BigDecimal.valueOf(gastoDto.qtdParcelas())));
         gasto.setTipoGasto(gastoDto.tipoGasto());
         gasto.setData(gastoDto.data());
         gasto.setMetodoPagamento(gastoDto.metodoPagamento());
+        gasto.setSituacao(gastoDto.situacao());
+
+        gasto.setQtdParcelas(gastoDto.qtdParcelas());
 
         return gastoRepository.save(gasto);
     }
