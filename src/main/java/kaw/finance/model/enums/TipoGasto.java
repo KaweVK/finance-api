@@ -8,5 +8,6 @@ public enum TipoGasto {
     BEM_ESTAR,
     CASA,
     ASSINATURAS,
+    TECNOLOGIA,
     OUTRO
 }
