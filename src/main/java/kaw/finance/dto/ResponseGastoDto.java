@@ -23,6 +23,8 @@ public record ResponseGastoDto(
         TipoGasto tipoGasto,
         Date data,
         @NotNull
+        Integer qtdParcelas,
+        @NotNull
         MetodoPagamento metodoPagamento
 ) {
 }

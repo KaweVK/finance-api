@@ -36,6 +36,8 @@ public class Gasto {
     private MetodoPagamento metodoPagamento;
     @Column(name = "data")
     private Date data;
+    @Column(name = "qtd_parcelas", nullable = false)
+    private Integer qtdParcelas;
     @CreatedDate
     @Column(name = "data_registro")
     private LocalDateTime dataRegistro;

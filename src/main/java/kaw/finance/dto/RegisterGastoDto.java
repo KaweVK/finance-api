@@ -21,6 +21,8 @@ public record RegisterGastoDto(
         BigDecimal valor,
         @NotNull
         TipoGasto tipoGasto,
+        @NotNull
+        Integer qtdParcelas,
         Date data,
         @NotNull
         MetodoPagamento metodoPagamento
