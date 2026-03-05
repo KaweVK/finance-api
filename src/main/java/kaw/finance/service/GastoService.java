@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -37,8 +38,17 @@ public class GastoService {
     }
 
     public Gasto createGasto(RegisterGastoDto gastoDto){
-        var gasto = gastoMapper.toEntity(gastoDto);
-        return gastoRepository.save(gasto);
+        Gasto gasto1 = null;
+        for (int i = 0; i < gastoDto.qtdParcelas(); i++) {
+            var gasto = gastoMapper.toEntity(gastoDto);
+            gasto.setValor(gasto.getValor().divide(BigDecimal.valueOf(gastoDto.qtdParcelas())));
+            gasto.setData(gastoDto.data().plusMonths(i));
+            gastoRepository.save(gasto);
+            if (i == 0) {
+                gasto1 = gasto;
+            }
+        }
+        return gasto1;
     }
 
     public Gasto updateGasto(Long id, RegisterGastoDto gastoDto){
