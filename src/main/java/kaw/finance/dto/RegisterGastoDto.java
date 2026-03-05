@@ -7,7 +7,7 @@ import kaw.finance.model.enums.MetodoPagamento;
 import kaw.finance.model.enums.TipoGasto;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public record RegisterGastoDto(
         Long id,
@@ -23,7 +23,7 @@ public record RegisterGastoDto(
         TipoGasto tipoGasto,
         @NotNull
         Integer qtdParcelas,
-        Date data,
+        LocalDateTime data,
         @NotNull
         MetodoPagamento metodoPagamento
 ) {
