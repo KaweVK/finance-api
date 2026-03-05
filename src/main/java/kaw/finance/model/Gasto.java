@@ -2,6 +2,7 @@ package kaw.finance.model;
 
 import jakarta.persistence.*;
 import kaw.finance.model.enums.MetodoPagamento;
+import kaw.finance.model.enums.Situacao;
 import kaw.finance.model.enums.TipoGasto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,6 +38,8 @@ public class Gasto {
     private LocalDateTime data;
     @Column(name = "qtd_parcelas", nullable = false)
     private Integer qtdParcelas;
+    @Column(name = "situacao", nullable = false)
+    private Situacao situacao;
     @CreatedDate
     @Column(name = "data_registro")
     private LocalDateTime dataRegistro;
