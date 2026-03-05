@@ -18,8 +18,6 @@ public class GastoController {
 
     @Autowired
     private GastoService service;
-    @Autowired
-    private GastoMapper mapper; 
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> findGasto(@PathVariable Long id) {

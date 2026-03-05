@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Optional;
 
 @Service
@@ -41,7 +42,7 @@ public class GastoService {
         Gasto gasto1 = null;
         for (int i = 0; i < gastoDto.qtdParcelas(); i++) {
             var gasto = gastoMapper.toEntity(gastoDto);
-            gasto.setValor(gasto.getValor().divide(BigDecimal.valueOf(gastoDto.qtdParcelas())));
+            gasto.setValor(gasto.getValor().divide(BigDecimal.valueOf(gastoDto.qtdParcelas()), RoundingMode.HALF_UP));
             gasto.setData(gastoDto.data().plusMonths(i));
             gastoRepository.save(gasto);
             if (i == 0) {
