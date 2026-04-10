@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+  --ink: #1f2b3d;
+  --ink-soft: #42566f;
+  --muted: #718197;
+  --paper: #f5f7fb;
+  --paper-strong: #ffffff;
+  --surface-soft: #f0f4fa;
+  --surface-quiet: #e6edf6;
+  --line: rgba(31, 43, 61, 0.1);
+  --accent: #6e9dc1;
+  --accent-strong: #2f638f;
+  --accent-soft: #e4eef7;
+  --shadow: 0 18px 46px rgba(30, 43, 61, 0.08);
+
+  /* Compatibility with the existing form/modal palette */
+  --olive-900: var(--ink);
+  --olive-800: #32465e;
+  --olive-700: #5e748d;
+  --olive-600: #7d93ac;
+  --olive-100: #e8eef6;
+  --olive-50: #f4f7fb;
+  --border: var(--line);
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgba(110, 157, 193, 0.18), transparent 22rem),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.78), transparent 20rem),
+    linear-gradient(180deg, #f8fafd 0%, #f4f7fb 100%);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--ink);
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(110, 157, 193, 0.1), transparent 22rem),
+    radial-gradient(circle at bottom right, rgba(229, 238, 248, 0.92), transparent 24rem),
+    linear-gradient(180deg, #f8fafd 0%, #f3f7fc 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: "Sora", "Manrope", sans-serif;
+  letter-spacing: -0.035em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(111, 148, 131, 0.24);
+  color: var(--ink);
+}
+
+.panel-surface {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(251, 253, 255, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.84);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.sidebar-shell {
+  color: var(--ink);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(249, 252, 255, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.84);
+  box-shadow: var(--shadow);
+}
+
+.top-shell {
+  background:
+    radial-gradient(circle at top right, rgba(110, 157, 193, 0.16), transparent 16rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 255, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.84);
+}
+
+.soft-panel {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(245, 249, 253, 0.94));
+}
+
+.accent-panel {
+  border: 1px solid rgba(47, 99, 143, 0.12);
+  background: linear-gradient(180deg, rgba(228, 238, 247, 0.92), rgba(240, 246, 252, 0.96));
+}
+
+.section-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.brand-panel {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 12rem),
+    linear-gradient(135deg, #3d6f99 0%, #274f72 100%);
+  color: white;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.9rem 1.3rem;
+  background: var(--accent-strong);
+  color: white;
+  font-weight: 700;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  background: #29567d;
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  padding: 0.78rem 1.05rem;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink);
+  font-weight: 700;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.secondary-button:hover {
+  transform: translateY(-1px);
+  background: white;
+}
+
+.filter-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 0.9rem 1rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.filter-input:focus {
+  border-color: rgba(47, 99, 143, 0.26);
+  box-shadow: 0 0 0 4px rgba(228, 238, 247, 0.96);
+  background: white;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator {
+  opacity: 0.68;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(111, 148, 131, 0.72);
+  border-radius: 999px;
+}
