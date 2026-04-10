@@ -3,6 +3,7 @@ package kaw.finance.dto;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import kaw.finance.model.Cartao;
 import kaw.finance.model.enums.MetodoPagamento;
 import kaw.finance.model.enums.Situacao;
 import kaw.finance.model.enums.TipoGasto;
@@ -27,6 +28,7 @@ public record ResponseGastoDto(
         Integer qtdParcelas,
         @NotNull
         Situacao situacao,
+        Cartao cartao,
         @NotNull
         MetodoPagamento metodoPagamento
 ) {

@@ -5,6 +5,7 @@ import kaw.finance.dto.ResponseGastoDto;
 import kaw.finance.dto.mapper.GastoMapper;
 import kaw.finance.exceptions.GastoNotFoundException;
 import kaw.finance.model.Gasto;
+import kaw.finance.model.enums.Situacao;
 import kaw.finance.repository.GastoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -32,9 +33,11 @@ public class GastoService {
         return gasto;
     }
 
-    public Page<ResponseGastoDto> findAll(Integer page, Integer size) {
+    public Page<ResponseGastoDto> findAll(Integer page, Integer size, Situacao situacao) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Gasto> gastos = gastoRepository.findAllNaoPago(pageable);
+        Page<Gasto> gastos = situacao == null
+                ? gastoRepository.findAll(pageable)
+                : gastoRepository.findBySituacao(situacao, pageable);
         return gastos.map(gastoMapper::toResponseDTO);
     }
 
@@ -53,15 +56,17 @@ public class GastoService {
     }
 
     public Gasto updateGasto(Long id, RegisterGastoDto gastoDto){
-        var gasto = gastoRepository.findById(id).orElseThrow(() -> new RuntimeException("Gasto não encontrado"));
+        var gasto = gastoRepository.findById(id)
+                .orElseThrow(() -> new GastoNotFoundException("Gasto não encontrado"));
 
         gasto.setNome(gastoDto.nome());
         gasto.setDescricao(gastoDto.descricao());
-        gasto.setValor(gastoDto.valor().divide(BigDecimal.valueOf(gastoDto.qtdParcelas())));
+        gasto.setValor(gastoDto.valor().divide(BigDecimal.valueOf(gastoDto.qtdParcelas()), RoundingMode.HALF_UP));
         gasto.setTipoGasto(gastoDto.tipoGasto());
         gasto.setData(gastoDto.data());
         gasto.setMetodoPagamento(gastoDto.metodoPagamento());
         gasto.setSituacao(gastoDto.situacao());
+        gasto.setCartao(gastoDto.cartao());
 
         gasto.setQtdParcelas(gastoDto.qtdParcelas());
 

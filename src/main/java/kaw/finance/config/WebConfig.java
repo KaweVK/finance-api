@@ -24,8 +24,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+        String normalizedLocalhostUrl = localhostURL != null && localhostURL.endsWith("/")
+                ? localhostURL.substring(0, localhostURL.length() - 1)
+                : localhostURL;
+
         registry.addMapping("/**") //
-                .allowedOrigins(localhostURL)
+                .allowedOrigins(normalizedLocalhostUrl)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*");
     }

@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS cartao (
+    id BIGSERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    dia_vencimento DATE,
+    dia_fechamento DATE,
+    data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

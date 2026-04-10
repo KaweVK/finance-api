@@ -1,5 +1,3 @@
-create database finance;
-
 CREATE TABLE IF NOT EXISTS gasto (
     id BIGSERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
@@ -8,7 +6,9 @@ CREATE TABLE IF NOT EXISTS gasto (
     tipo_gasto VARCHAR(55) NOT NULL,
     metodo_pagamento VARCHAR(55) NOT NULL,
     data DATE,
+    qtd_parcelas INTEGER NOT NULL,
+    situacao VARCHAR(55) NOT NULL,
+    cartao_id BIGINT,
     data_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     data_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-
 );

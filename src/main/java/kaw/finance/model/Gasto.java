@@ -33,15 +33,21 @@ public class Gasto {
     @Column(name = "valor",  nullable = false)
     private BigDecimal valor;
     @Column(name = "tipo_gasto", nullable = false)
+    @Enumerated(EnumType.STRING)
     private TipoGasto tipoGasto;
     @Column(name = "metodo_pagamento", nullable = false)
+    @Enumerated(EnumType.STRING)
     private MetodoPagamento metodoPagamento;
     @Column(name = "data")
     private LocalDateTime data;
     @Column(name = "qtd_parcelas", nullable = false)
     private Integer qtdParcelas;
+    @Enumerated(EnumType.STRING)
     @Column(name = "situacao", nullable = false)
     private Situacao situacao;
+    @ManyToOne
+    @JoinColumn(name = "cartao_id")
+    private Cartao cartao;
     @CreatedDate
     @Column(name = "data_registro")
     private LocalDateTime dataRegistro;

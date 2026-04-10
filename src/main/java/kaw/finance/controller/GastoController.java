@@ -3,16 +3,15 @@ package kaw.finance.controller;
 import jakarta.transaction.Transactional;
 import kaw.finance.dto.RegisterGastoDto;
 import kaw.finance.dto.ResponseGastoDto;
-import kaw.finance.dto.mapper.GastoMapper;
+import kaw.finance.model.enums.Situacao;
 import kaw.finance.service.GastoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/gasto")
 public class GastoController {
 
@@ -30,9 +29,11 @@ public class GastoController {
             @RequestParam(value = "page", defaultValue = "0")
             Integer page,
             @RequestParam(value = "size", defaultValue = "10")
-            Integer size
+            Integer size,
+            @RequestParam(value = "situacao", required = false)
+            Situacao situacao
             ) {
-        Page<ResponseGastoDto> gastos = service.findAll(page, size);
+        Page<ResponseGastoDto> gastos = service.findAll(page, size, situacao);
         return ResponseEntity.ok(gastos);
     }
 

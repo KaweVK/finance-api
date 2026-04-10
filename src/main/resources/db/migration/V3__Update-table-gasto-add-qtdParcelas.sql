@@ -1,1 +1,0 @@
-alter table gasto add column qtd_parcelas int not null default 1;
