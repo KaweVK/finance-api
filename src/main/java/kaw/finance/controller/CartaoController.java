@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/cartao")
+@RequestMapping("/api/cartao")
 public class CartaoController {
 
     @Autowired
