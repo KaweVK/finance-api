@@ -12,6 +12,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Value("${URL_LOCALHOST}")
     private String localhostURL;
+    @Value("${URL_PROD}")
+    private String prodURL;
 
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
@@ -28,8 +30,15 @@ public class WebConfig implements WebMvcConfigurer {
                 ? localhostURL.substring(0, localhostURL.length() - 1)
                 : localhostURL;
 
+        String normalizedProdUrl = prodURL != null && prodURL.endsWith("/")
+                ? prodURL.substring(0, prodURL.length() - 1)
+                : prodURL;
+
         registry.addMapping("/**") //
                 .allowedOrigins(normalizedLocalhostUrl)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowedOrigins(normalizedProdUrl)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*");
     }
